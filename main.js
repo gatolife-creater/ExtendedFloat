@@ -247,8 +247,9 @@ function multiplication(st1, st2) {
 
 function division(dividend, divisor) {}
 
-const { ExtendedFloat } = require('./MasterFloat');
+console.log(multiplication('0.14', '2.0'));
 
+const { ExtendedFloat } = require('./MasterFloat');
 let masterNumber = new ExtendedFloat('0.14');
 let masterNumber2 = new ExtendedFloat('2.0');
 console.log(masterNumber, masterNumber2);
