@@ -199,55 +199,7 @@ function subtraction(minuend, subtrahend) {
   return resolve;
 }
 
-// 2数を乗算する関数
-function multiplication(st1, st2) {
-  let fusedSt1 = pullOutPoint(st1);
-  let fusedSt2 = pullOutPoint(st2);
-
-  let results = [];
-  for (let i = fusedSt2.length - 1; i >= 0; i--) {
-    let flg = 0;
-    results[i] = '';
-    for (let j = fusedSt1.length - 1; j >= 0; j--) {
-      let p = fusedSt2[i] * fusedSt1[j] + flg;
-      results[i] = (p % 10) + results[i];
-      if (p >= 10) flg = Math.floor(p / 10);
-      else flg = 0;
-    }
-    if (flg) results[i] = String(flg) + results[i];
-  }
-
-  console.log(results);
-
-  for (let i = 0; i < results.length; i++) {
-    for (let j = 0; j < i; j++) {
-      results[results.length - 1 - i] += '0';
-    }
-    results[results.length - 1 - i] += '.0';
-  }
-  console.log(results);
-
-  while (results.length > 1) {
-    results[1] = addition(results[0], results[1]);
-    results.shift();
-  }
-  console.log(results);
-
-  results = results[0].replace('.0', '');
-  console.log(results);
-
-  let decimalDigits = devide(st1).decimal.length + devide(st2).decimal.length;
-  console.log(decimalDigits);
-  let newInteger = results.slice(0, results.length - decimalDigits);
-  let newDecimal = results.slice(results.length - decimalDigits);
-  let newResult = newInteger + '.' + newDecimal;
-  // console.log(results);
-  return newResult;
-}
-
 function division(dividend, divisor) {}
-
-console.log(multiplication('0.14', '2.0'));
 
 const { ExtendedFloat } = require('./MasterFloat');
 let masterNumber = new ExtendedFloat('0.14');
@@ -257,6 +209,8 @@ console.log(masterNumber, masterNumber2);
 console.log('add');
 console.log(masterNumber.addition(masterNumber2));
 
-console.log('mult');
-console.log(masterNumber.multiplication(masterNumber2));
-// console.log(masterNumber2.subtraction(masterNumber));
+masterNumber = masterNumber
+  .addition(masterNumber2)
+  .multiplication(masterNumber2)
+  .addition(masterNumber2);
+console.log(masterNumber);

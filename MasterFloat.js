@@ -248,7 +248,7 @@ class ExtendedFloat {
     let newDecimal = results.slice(results.length - decimalDigits); // <=こいつをどうにかしたい
     let newResult = newInteger + '.' + newDecimal;
     // console.log(results);
-    return newResult;
+    return new ExtendedFloat(newResult);
   }
 
   division(dividend, divisor) {}
